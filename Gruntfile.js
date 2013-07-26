@@ -16,6 +16,9 @@ module.exports = function(grunt) {
           }
       }
     },
+    jshint: {
+      tasks: ['tasks/*.js', 'Gruntfile.js']
+    },
     nodeunit: {
       tests: ['test/*_test.js']
     }
@@ -24,10 +27,11 @@ module.exports = function(grunt) {
   // Load local tasks.
   grunt.loadTasks('tasks');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.registerTask('test', ['clean:tests', 'docco', 'nodeunit:tests']);
 
   // Default task.
-  grunt.registerTask('default', ['lint', 'docco']);
+  grunt.registerTask('default', ['jshint', 'docco']);
 
 };

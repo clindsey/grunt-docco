@@ -4,20 +4,17 @@
 // Copyright (c) 2012 David Souther
 // Licensed under the MIT license.
 
-"use strict";
-var docco = require('docco');
-
 module.exports = function(grunt) {
+  "use strict";
   grunt.registerMultiTask('docco', 'Docco processor.', function() {
-    var task = this,
-        fdone = 0,
-        flength = this.files.length,
-        done = this.async();
+    var docco = require('docco'),
+      params = this.data.options || {},
+      done = this.async();
 
-    this.files.forEach(function(file) {
-      docco.document(file.src, task.options({ output: file.dest }), function(){
-        if(++fdone === flength) done();
-      });
-    });
+    params.args = grunt.file.expand(this.data.src);
+    if (this.data.dest) {
+      params.output = this.data.dest;
+    }
+    docco.document(params,done);
   });
 };
