@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "grunt": "~0.4.0",
-    "docco": "git://github.com/jashkenas/docco.git"
+    "docco": "git://github.com/clindsey/docco.git"
   },
   "devDependencies": {
     "rimraf": "~2.0.2",
